@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-deployment
+  labels:
+    name: myapp
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: py-app
+  template:
+    metadata:
+      labels:
+        app: py-app
+    spec:
+      containers:
+      - name: app
+        image: franticjeremi/app:v2
+        ports:
+          - name: web
+            containerPort: 8000
